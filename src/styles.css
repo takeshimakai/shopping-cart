@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 0 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.nav {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.cart {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 150px;
+  height: 40px;
+  border: solid 2px rgb(70, 124, 93);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart > p {
+  color: rgb(70, 124, 93);
+  font-size: 15px;
+}
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  width: 200px;
+  height: 200px;
+  border: solid 2px rgb(70, 124, 93);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-container {
+  position: relative;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.books-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 50px;
+}
+
+.book-container {
+  width: 80%;
+  justify-self: center;
+  margin-bottom: 50px;
+}
+
+img {
+  width: 100%;
+  object-fit: contain;
+}
