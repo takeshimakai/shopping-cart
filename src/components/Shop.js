@@ -10,8 +10,12 @@ const Shop = () => {
   const fetchData = async () => {
     const data = await fetch('https://fakerapi.it/api/v1/books?_quantity=9');
     const books = await data.json();
-    console.log(books.data);
-    setBooks(books.data);
+    setBooks(books.data.map((book) => (
+      {
+        ...book,
+        price: Math.floor(Math.random() * Math.floor(100))
+      }))
+    )
   }
 
   return (
@@ -22,6 +26,7 @@ const Shop = () => {
           <div key={book.isbn} className='book-container'>
             <img src={book.image} alt='some book' />
             <h2>{book.title}</h2>
+            <p>${book.price}</p>
           </div>
         ))}
       </div>
