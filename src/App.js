@@ -1,5 +1,5 @@
 import './styles.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Shop from './components/Shop';
@@ -10,8 +10,29 @@ const App = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (book) => {
-    setCart((prevCart) => [...prevCart, book]);
+    const alreadyInCart = cart.some((item) => item.isbn === book.isbn);
+    if (alreadyInCart) {
+      const newCart = cart.map((item) => {
+        if (item.isbn === book.isbn) {
+          item.quantity += 1;
+        }
+        return item;
+      })
+      setCart(newCart);
+    } else {
+      setCart((prevCart) => [
+        ...prevCart,
+        {
+          ...book,
+          quantity: 1
+        }
+      ]);
+    }
   }
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   return (
     <BrowserRouter>

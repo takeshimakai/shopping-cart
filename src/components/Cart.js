@@ -1,23 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Cart = (props) => {
   const { cart } = props;
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [quantity, setQuantity] = useState(0);
 
-  const expand = () => setIsExpanded(!isExpanded);
+  useEffect(() => {
+    let total = 0;
+    for (let obj of cart) {
+      total += obj.quantity;
+    }
+    setQuantity(total);
+  }, [cart]);
 
   return (
-    <div className='cart' onClick={expand} >
-      <p>CART</p>
-        {isExpanded
-          ? <ul>
-              {cart.map((item) => (
-                <li key={item.isbn}>{item.title} - {item.price}</li>
-              ))}
-            </ul>
-          : <p>{cart.length}</p>
-        }
+    <div className='cart'>
+      <p>CART ({quantity})</p>
     </div>
   )
 }
