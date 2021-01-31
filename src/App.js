@@ -1,20 +1,21 @@
 import './styles.css';
-import { useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Shop from './components/Shop';
 import Nav from './components/Nav';
-import Cart from './components/Cart';
+import CartIcon from './components/CartIcon';
+import Cart from './components/Cart'
 
 const App = () => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (book) => {
+  const addToCart = (book, quantity) => {
     const alreadyInCart = cart.some((item) => item.isbn === book.isbn);
     if (alreadyInCart) {
       const newCart = cart.map((item) => {
         if (item.isbn === book.isbn) {
-          item.quantity += 1;
+          item.quantity += Number(quantity.current.value);
         }
         return item;
       })
@@ -24,24 +25,44 @@ const App = () => {
         ...prevCart,
         {
           ...book,
-          quantity: 1
+          quantity: Number(quantity.current.value)
         }
       ]);
     }
   }
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+  const handleCartQuantityChange = (e, book) => {
+    const quantity = Number(e.target.value);
+    const updatedCart = cart.map((item) => {
+      if (item.isbn === book.isbn) {
+        item.quantity = quantity;
+      }
+      return item;
+    })
+    setCart(updatedCart);
+  }
+
+  const removeBook = (book) => {
+    setCart((prevCart) => prevCart.filter((item) => item.isbn !== book.isbn));
+  }
 
   return (
     <BrowserRouter>
       <Nav />
-      <Cart cart={cart} />
+      <Link to='/cart'>
+        <CartIcon cart={cart} />
+      </Link>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/shop'>
           <Shop addToCart={addToCart} />
+        </Route>
+        <Route exact path='/cart'>
+          <Cart
+            cart={cart}
+            handleCartQuantityChange={handleCartQuantityChange}
+            removeBook={removeBook}
+          />
         </Route>
       </Switch>
     </BrowserRouter>

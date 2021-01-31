@@ -27,7 +27,7 @@ a {
   height: 40px;
 }
 
-.cart {
+.cart-icon {
   position: fixed;
   top: 10px;
   right: 10px;
@@ -38,11 +38,18 @@ a {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  z-index: 1;
+  background: white;
 }
 
-.cart > p {
-  color: rgb(70, 124, 93);
+.cart-icon > p {
+  color: black;
   font-size: 15px;
+}
+
+.main-container {
+  position: relative;
+  top: 50px;
 }
 
 .home-container {
@@ -63,8 +70,6 @@ a {
 }
 
 .shop-container {
-  position: relative;
-  top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,4 +93,63 @@ a {
 img {
   width: 100%;
   object-fit: contain;
+}
+
+.quantity {
+  display: flex;
+}
+
+.quantity-input {
+  width: 40px;
+  margin-left: 5px;
+}
+
+input::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+.add-btn {
+  margin-top: 10px;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  margin-top: 50px;
+  width: 80%;
+}
+
+table, th, td {
+  border: solid 1px black;
+  border-collapse: collapse;
+}
+
+.quantity-column, .price-column {
+  width: 100px;
+}
+
+.price-td {
+  text-align: end;
+}
+
+.cart-quantity-input {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.remove-btn {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: red;
+}
+
+.checkout-btn {
+  margin-top: 20px;
 }
