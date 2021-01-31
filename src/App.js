@@ -53,11 +53,11 @@ const App = () => {
         <CartIcon cart={cart} />
       </Link>
       <Switch>
-        <Route exact path='/shopping-cart/' component={Home} />
-        <Route exact path='/shop'>
+        <Route exact path='/shopping-cart' component={Home} />
+        <Route exact path='/shopping-cart/shop'>
           <Shop addToCart={addToCart} />
         </Route>
-        <Route exact path='/cart'>
+        <Route exact path='/shopping-cart/cart'>
           <Cart
             cart={cart}
             handleCartQuantityChange={handleCartQuantityChange}
