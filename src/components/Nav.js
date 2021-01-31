@@ -4,7 +4,7 @@ const Nav = () => {
   return (
     <ul className='nav'>
       <li>
-        <Link to='/'>HOME</Link>
+        <Link to='/shopping-cart'>HOME</Link>
       </li>
       <li>
         <Link to='/shop'>SHOP</Link>
