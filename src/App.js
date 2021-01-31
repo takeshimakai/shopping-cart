@@ -49,7 +49,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Nav />
-      <Link to='/cart'>
+      <Link to='/shopping-cart/cart'>
         <CartIcon cart={cart} />
       </Link>
       <Switch>
